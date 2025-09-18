@@ -198,9 +198,9 @@ const DemographicsChart = () => {
           <CardContent>
             <div className="h-80 chart-animation">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={countryData} layout="horizontal">
+                <BarChart data={countryData} layout="vertical">
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis type="number" stroke="hsl(var(--muted-foreground))" fontSize={12} />
+                  <XAxis type="number" domain={[0, 'dataMax']} allowDecimals={false} stroke="hsl(var(--muted-foreground))" fontSize={12} />
                   <YAxis dataKey="country" type="category" stroke="hsl(var(--muted-foreground))" fontSize={12} width={100} />
                   <Tooltip
                     formatter={(value, name, props) => [
@@ -213,7 +213,7 @@ const DemographicsChart = () => {
                       borderRadius: "8px"
                     }}
                   />
-                  <Bar dataKey="count" fill="hsl(var(--chart-2))" radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="count" fill="hsl(var(--chart-2))" radius={[0, 4, 4, 0]} barSize={18} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -295,7 +295,7 @@ const DemographicsChart = () => {
                     label={({ name, value }) => `${name}: ${value}%`}
                     outerRadius={100}
                     fill="#8884d8"
-                    dataKey="value"
+                    dataKey="percentage"
                   >
                     {techCompanyData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

@@ -34,42 +34,24 @@ const TreatmentAnalysis = () => {
           <CardContent>
             <div className="h-80 chart-animation">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={treatmentByFamilyHistory}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis 
-                    stroke="hsl(var(--muted-foreground))"
-                    fontSize={12}
-                    label={{ value: 'Treatment Percentage (%)', position: 'insideBottom', offset: -5 }}
-                  />
-                  <YAxis 
-                    dataKey="category"
-                    type="category"
-                    stroke="hsl(var(--muted-foreground))"
-                    fontSize={12}
-                    width={150}
-                    label={{ value: 'Family History Status', angle: -90, position: 'insideLeft' }}
-                  />
-                  <Tooltip 
-                    formatter={(value, name) => [`${value}%`, name === "treated" ? "Received Treatment" : "No Treatment"]}
-                    contentStyle={{ 
-                      backgroundColor: "hsl(var(--card))", 
+                <BarChart data={treatmentByFamilyHistory} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />        
+                  <XAxis type="number" domain={[0, 100]} allowDecimals={false} stroke="hsl(var(--muted-foreground))" fontSize={12} label={{ value: 'Treatment Percentage (%)', position: 'insideBottom', offset: -5 }} />
+                  <YAxis dataKey="category" type="category" stroke="hsl(var(--muted-foreground))" fontSize={12} width={150} label={{ value: 'Family History Status', angle: -90, position: 'insideLeft' }} />
+                  <Tooltip
+                    formatter={(value, name, props) => [
+                      `${value}%`,
+                      props?.dataKey === "treated" ? "Received Treatment" : "No Treatment"
+                    ]}
+                    contentStyle={{
+                      backgroundColor: "hsl(var(--card))",
                       border: "1px solid hsl(var(--border))",
                       borderRadius: "8px"
                     }}
                   />
                   <Legend />
-                  <Bar 
-                    dataKey="treated" 
-                    fill="hsl(var(--chart-3))" 
-                    name="Received Treatment"
-                    radius={[0, 4, 4, 0]} 
-                  />
-                  <Bar 
-                    dataKey="notTreated" 
-                    fill="hsl(var(--chart-5))" 
-                    name="No Treatment"
-                    radius={[0, 4, 4, 0]} 
-                  />
+                  <Bar dataKey="treated" fill="hsl(var(--chart-3))" name="Received Treatment" barSize={18} radius={[0, 4, 4, 0]} />
+                  <Bar dataKey="notTreated" fill="hsl(var(--chart-5))" name="No Treatment" barSize={18} radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
