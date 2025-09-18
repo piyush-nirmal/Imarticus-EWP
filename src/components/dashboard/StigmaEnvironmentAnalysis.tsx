@@ -126,35 +126,21 @@ const StigmaEnvironmentAnalysis = () => {
           <CardContent>
             <div className="h-80 chart-animation">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={leaveEaseData}>
+                <BarChart data={leaveEaseData} layout="vertical">
                   <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                  <XAxis 
-                    dataKey="difficulty" 
-                    stroke="hsl(var(--muted-foreground))"
-                    fontSize={10}
-                    angle={-45}
-                    textAnchor="end"
-                    height={80}
-                    label={{ value: 'Medical Leave Difficulty', position: 'insideBottom', offset: -35 }}
-                  />
-                  <YAxis 
-                    stroke="hsl(var(--muted-foreground))"
-                    fontSize={12}
-                    label={{ value: 'Response Rate (%)', angle: -90, position: 'insideLeft' }}
-                  />
-                  <Tooltip 
-                    formatter={(value) => [`${value}%`, "Response Rate"]}
-                    contentStyle={{ 
-                      backgroundColor: "hsl(var(--card))", 
-                      border: "1px solid hsl(var(--border))",
-                      borderRadius: "8px"
+                  <XAxis type="number" domain={[0, 100]} allowDecimals={false} stroke="hsl(var(--muted-foreground))" fontSize={12} label={{ value: 'Response Rate (%)', position: 'insideBottom', offset: -5 }} />
+                  <YAxis dataKey="difficulty" type="category" width={140} stroke="hsl(var(--muted-foreground))" fontSize={12} label={{ value: 'Medical Leave Difficulty', angle: -90, position: 'insideLeft' }} />
+                  <Tooltip
+                    formatter={(value) => [`${value}%`, 'Response Rate']}
+                    contentStyle={{
+                      backgroundColor: 'hsl(var(--card))',
+                      border: '1px solid hsl(var(--border))',
+                      borderRadius: '8px'
                     }}
                   />
-                  <Bar 
-                    dataKey="percentage" 
-                    fill="hsl(var(--chart-4))"
-                    radius={[4, 4, 0, 0]}
-                  />
+                  <Bar dataKey="percentage" fill="hsl(var(--chart-4))" radius={[0, 4, 4, 0]}>
+                    <LabelList dataKey="percentage" position="right" formatter={(v: number) => `${v}%`} fill="hsl(var(--foreground))" />
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
