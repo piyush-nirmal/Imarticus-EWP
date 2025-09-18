@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from "recharts";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, Legend, ComposedChart, Area } from "recharts";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const treatmentByFamilyHistory = [
@@ -107,46 +107,55 @@ const TreatmentAnalysis = () => {
         <CardContent>
           <div className="h-80 chart-animation">
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={companySizeData}>
+              <ComposedChart data={companySizeData}>
+                <defs>
+                  <linearGradient id="awarenessFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="hsl(var(--chart-2))" stopOpacity={0.35} />
+                    <stop offset="95%" stopColor="hsl(var(--chart-2))" stopOpacity={0.05} />
+                  </linearGradient>
+                </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-                <XAxis 
-                  dataKey="size" 
+                <XAxis
+                  dataKey="size"
                   stroke="hsl(var(--muted-foreground))"
                   fontSize={12}
                   label={{ value: 'Company Size (Employees)', position: 'insideBottom', offset: -5 }}
                 />
-                <YAxis 
+                <YAxis
                   stroke="hsl(var(--muted-foreground))"
                   fontSize={12}
                   domain={[0, 80]}
                   label={{ value: 'Percentage (%)', angle: -90, position: 'insideLeft' }}
                 />
-                <Tooltip 
-                  formatter={(value, name) => [`${value}%`, name === "awarenessRate" ? "Awareness Rate" : "Treatment Rate"]}
-                  contentStyle={{ 
-                    backgroundColor: "hsl(var(--card))", 
-                    border: "1px solid hsl(var(--border))",
-                    borderRadius: "8px"
+                <Tooltip
+                  formatter={(value, name) => [`${value}%`, name === 'awarenessRate' ? 'Awareness Rate' : 'Treatment Rate']}
+                  contentStyle={{
+                    backgroundColor: 'hsl(var(--card))',
+                    border: '1px solid hsl(var(--border))',
+                    borderRadius: '8px'
                   }}
                 />
                 <Legend />
-                <Line 
-                  type="monotone" 
-                  dataKey="awarenessRate" 
-                  stroke="hsl(var(--chart-2))" 
-                  strokeWidth={3}
-                  dot={{ fill: "hsl(var(--chart-2))", strokeWidth: 2, r: 6 }}
+                <Area
+                  type="monotone"
+                  dataKey="awarenessRate"
                   name="Awareness Rate"
+                  stroke="hsl(var(--chart-2))"
+                  fill="url(#awarenessFill)"
+                  strokeWidth={2}
+                  dot={{ r: 3 }}
+                  activeDot={{ r: 5 }}
                 />
-                <Line 
-                  type="monotone" 
-                  dataKey="treatmentRate" 
-                  stroke="hsl(var(--chart-3))" 
-                  strokeWidth={3}
-                  dot={{ fill: "hsl(var(--chart-3))", strokeWidth: 2, r: 6 }}
+                <Line
+                  type="monotone"
+                  dataKey="treatmentRate"
                   name="Treatment Rate"
+                  stroke="hsl(var(--chart-3))"
+                  strokeWidth={3}
+                  dot={{ r: 5 }}
+                  activeDot={{ r: 7 }}
                 />
-              </LineChart>
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         </CardContent>
