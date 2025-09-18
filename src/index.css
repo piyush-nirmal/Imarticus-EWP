@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Professional Analytics Dashboard Design System
+All colors MUST be HSL for consistency and theming
+*/
+
+@layer base {
+  :root {
+    /* Base colors for professional analytics */
+    --background: 240 10% 98%;
+    --foreground: 240 10% 8%;
+
+    /* Dashboard specific colors */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
+
+    /* Analytics brand colors */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 217 91% 95%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 270 95% 85%;
+    --accent-foreground: 270 8% 15%;
+
+    /* Status colors for analytics */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Chart colors */
+    --chart-1: 217 91% 60%;
+    --chart-2: 270 95% 75%;
+    --chart-3: 142 76% 36%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 0 84% 60%;
+    --chart-6: 197 37% 24%;
+
+    /* Gradients for visual appeal */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(270 95% 75%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(158 64% 52%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(240 5% 98%));
+
+    /* Shadows for depth */
+    --shadow-soft: 0 2px 8px hsl(240 10% 8% / 0.04);
+    --shadow-medium: 0 4px 16px hsl(240 10% 8% / 0.08);
+    --shadow-strong: 0 8px 32px hsl(240 10% 8% / 0.12);
+
+    /* UI elements */
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode for analytics dashboard */
+    --background: 240 10% 4%;
+    --foreground: 240 5% 96%;
+
+    --card: 240 10% 7%;
+    --card-foreground: 240 5% 96%;
+
+    --popover: 240 10% 7%;
+    --popover-foreground: 240 5% 96%;
+
+    --primary: 217 91% 65%;
+    --primary-foreground: 240 10% 4%;
+    --primary-soft: 217 91% 15%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 240 5% 96%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 64%;
+
+    --accent: 270 95% 25%;
+    --accent-foreground: 270 95% 95%;
+
+    /* Dark mode chart colors */
+    --chart-1: 217 91% 65%;
+    --chart-2: 270 95% 80%;
+    --chart-3: 142 76% 41%;
+    --chart-4: 38 92% 55%;
+    --chart-5: 0 84% 65%;
+    --chart-6: 197 37% 34%;
+
+    /* Dark gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(217 91% 65%), hsl(270 95% 80%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 41%), hsl(158 64% 57%));
+    --gradient-card: linear-gradient(145deg, hsl(240 10% 7%), hsl(240 4% 12%));
+
+    /* Dark shadows */
+    --shadow-soft: 0 2px 8px hsl(0 0% 0% / 0.12);
+    --shadow-medium: 0 4px 16px hsl(0 0% 0% / 0.24);
+    --shadow-strong: 0 8px 32px hsl(0 0% 0% / 0.36);
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 217 91% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  /* Dashboard specific utilities */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-success {
+    background: var(--gradient-success);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-strong {
+    box-shadow: var(--shadow-strong);
+  }
+
+  /* Chart animations */
+  .chart-animation {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Dashboard layout utilities */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    @apply rounded-lg p-6 shadow-soft gradient-card border border-border/50;
+  }
+}
